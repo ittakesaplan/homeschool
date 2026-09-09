@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 import { supabase } from '../supabase'
-import { BookOpen } from 'lucide-react'
+import {
+  BookOpen, Pencil, GraduationCap, Globe, Palette,
+  FlaskConical, Calculator, Music,
+} from 'lucide-react'
+import DecoIcons from '../components/DecoIcons'
 
 export default function Login() {
   const [email, setEmail] = useState('')
@@ -23,12 +27,29 @@ export default function Login() {
 
   return (
     <div className="login-page">
+      <DecoIcons />
       <div className="login-card">
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
-          <BookOpen size={24} color="#5B7553" />
+        {/* Colorful icon row */}
+        <div className="login-icon-row">
+          {[
+            { Icon: Pencil, bg: '#EFF6FF', color: '#3B82F6' },
+            { Icon: Globe, bg: '#F0FDF4', color: '#22C55E' },
+            { Icon: Palette, bg: '#FFF1F2', color: '#F43F5E' },
+            { Icon: FlaskConical, bg: '#F5F3FF', color: '#8B5CF6' },
+            { Icon: Calculator, bg: '#FFF7ED', color: '#F97316' },
+            { Icon: Music, bg: '#FEFCE8', color: '#EAB308' },
+          ].map(({ Icon, bg, color }, i) => (
+            <div key={i} className="login-icon-dot" style={{ background: bg }}>
+              <Icon size={20} color={color} />
+            </div>
+          ))}
+        </div>
+
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', justifyContent: 'center' }}>
+          <GraduationCap size={26} color="#1E40AF" />
           <h1>Learning Journal</h1>
         </div>
-        <p>Sign in to add entries and manage the portfolio.</p>
+        <p style={{ textAlign: 'center' }}>Sign in to add entries and manage the portfolio.</p>
 
         {error && <div className="alert alert-error">{error}</div>}
 
