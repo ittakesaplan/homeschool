@@ -43,7 +43,7 @@ export default function EntryForm({ entry, onClose, onSaved }) {
   }
 
   function handleFiles(fileList) {
-    const newFiles = Array.from(fileList).filter(f => f.size <= 10 * 1024 * 1024) // 10MB limit
+    const newFiles = Array.from(fileList).filter(f => f.size <= 50 * 1024 * 1024) // 50MB limit
     setFiles(prev => [...prev, ...newFiles])
   }
 
@@ -201,7 +201,7 @@ export default function EntryForm({ entry, onClose, onSaved }) {
             </div>
 
             <div className="form-group">
-              <label>Photos &amp; Work Samples</label>
+              <label>Photos, Videos &amp; Work Samples</label>
               <div
                 className={`upload-zone ${dragOver ? 'drag-over' : ''}`}
                 onClick={() => fileInputRef.current?.click()}
@@ -212,13 +212,13 @@ export default function EntryForm({ entry, onClose, onSaved }) {
                 <Upload size={24} style={{ marginBottom: '0.25rem' }} />
                 <div>Drop files here or click to browse</div>
                 <div style={{ fontSize: '0.75rem', marginTop: '0.25rem' }}>
-                  Images, PDFs, docs up to 10 MB each
+                  Images, videos, PDFs, docs up to 50 MB each
                 </div>
                 <input
                   ref={fileInputRef}
                   type="file"
                   multiple
-                  accept="image/*,.pdf,.doc,.docx,.txt"
+                  accept="image/*,video/*,.pdf,.doc,.docx,.txt"
                   onChange={e => handleFiles(e.target.files)}
                 />
               </div>
